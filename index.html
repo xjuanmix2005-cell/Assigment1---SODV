@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Personal Profile</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>My Personal Website</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="grade-converter.html">Grade Converter</a></li>
+                <li><a href="staff.html">Staff</a></li>
+                <li><a href="temperature.html">Temperature Converter</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h2>Welcome to my personal page</h2>
+        
+        <!--information about me-->
+        <p>
+            Hello, I am a second semester web programming student. 
+            I enjoy learning about technology and web development. In my free time 
+            I like to code, listen to music and spend time with friends. I am 
+            advancing in my knowledge and learning something new every day.
+        </p>
+
+        <!--more inf-->
+        <p>
+            My goal is to become a good web developer. I am learning 
+            HTML, CSS and JavaScript. Although I am in my second semesters, I work hard 
+            every day to improve my skills. This page is part of my academic project 
+            and I hope you like it.
+        </p>
+
+
+        <div id="delayed-image" class="image-container">
+            <!--this image will be hidden at first-->
+            <img src="https://picsum.photos/400/300" alt="My profile picture">
+            <p class="image-caption">This image appeared after 10 seconds</p>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; <span id="current-year"></span> Your Name. All rights reserved.</p>
+        <p>Current date: <span id="current-date"></span></p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temperature Converter</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Temperature Converter</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="grade-converter.html">Grade Converter</a></li>
+                <li><a href="staff.html">Staff</a></li>
+                <li><a href="temperature.html">Temperature Converter</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="temperature-container">
+            <h2>Temperature Converter</h2>
+            <p>Select the input unit and enter the value</p>
+
+            <!--user chooses what type of temperature they are entering-->
+            <div class="input-group">
+                <label for="input-type">Input type:</label>
+                <select id="input-type">
+                    <option value="fahrenheit">Fahrenheit (°F)</option>
+                    <option value="celsius">Celsius (°C)</option>
+                    <option value="kelvin">Kelvin (K)</option>
+                </select>
+            </div>
+
+            <!--users types the temperature value-->
+            <div class="input-group">
+                <label for="temp-input">Temperature:</label>
+                <input type="number" id="temp-input" placeholder="0" onkeyup="convertTemperature()">
+            </div>
+
+            <!-- conversions will be shown here-->
+            <div class="results-container">
+                <div class="result-box">
+                    <h3>Fahrenheit</h3>
+                    <p id="fahrenheit-result">0 °F</p>
+                </div>
+                <div class="result-box">
+                    <h3>Celsius</h3>
+                    <p id="celsius-result">0 °C</p>
+                </div>
+                <div class="result-box">
+                    <h3>Kelvin</h3>
+                    <p id="kelvin-result">0 K</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; <span id="current-year"></span> Your Name. All rights reserved.</p>
+        <p>Current date: <span id="current-date"></span></p>
+    </footer>
+
+    <script>
+        //converts temperature automatically
+        function convertTemperature() {
+            
+            var inputType = document.getElementById('input-type').value;  // Get the selected input type
+            
+            var inputValue = document.getElementById('temp-input').value;  // Get the input value as a string
+            
+            var temp = parseFloat(inputValue);  // Convert the input to a number
+            
+            //Validate that it is a valid number
+            if (isNaN(temp) || inputValue === '') 
+            {
+                // If not valid, show zeros
+                document.getElementById('fahrenheit-result').textContent = '0 °F';
+                document.getElementById('celsius-result').textContent = '0 °C';
+                document.getElementById('kelvin-result').textContent = '0 K';
+                return; // Exit the function
+            }
+            
+            //variables to store the results
+            var fahrenheit, celsius, kelvin;
+            
+            //convert according to the selected input type
+            if (inputType === 'fahrenheit')
+             {
+                //if input is Fahrenheit, convert to Celsius and Kelvin
+                fahrenheit = temp;
+                celsius = (temp - 32) * 5/9; // Formula: (°F - 32) × 5/9 = °C
+                kelvin = celsius + 273.15;   // Formula: °C + 273.15 = K
+                
+            } else if (inputType === 'celsius') 
+            {
+                //if input is Celsius, convert to Fahrenheit and Kelvin
+                celsius = temp;
+                fahrenheit = (temp * 9/5) + 32; // Formula: (°C × 9/5) + 32 = °F
+                kelvin = temp + 273.15;         // Formula: °C + 273.15 = K
+                
+            } else if (inputType === 'kelvin') 
+            {
+                //if input is Kelvin, convert to Fahrenheit and Celsius
+                kelvin = temp;
+                celsius = temp - 273.15;        // Formula: K - 273.15 = °C
+                fahrenheit = (celsius * 9/5) + 32; // Formula: (°C × 9/5) + 32 = °F
+            }
+            
+            //show the results
+            
+            document.getElementById('fahrenheit-result').textContent = 
+                fahrenheit.toFixed(2) + ' °F';
+            document.getElementById('celsius-result').textContent = 
+                celsius.toFixed(2) + ' °C';
+            document.getElementById('kelvin-result').textContent = 
+                kelvin.toFixed(2) + ' K';
+        }
+
+        window.onload = function() {
+
+
+            var year = new Date().getFullYear();
+            document.getElementById('current-year').textContent = year;
+            
+
+            var today = new Date();
+            var options = { year: 'numeric', month: 'long', day: 'numeric' };
+            var dateString = today.toLocaleDateString('en-US', options);
+            document.getElementById('current-date').textContent = dateString;
+        };
+    </script>
+</body>
+</html>
